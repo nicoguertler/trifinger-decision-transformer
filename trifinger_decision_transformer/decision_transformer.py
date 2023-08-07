@@ -56,7 +56,7 @@ class DecisionTransformerBasePolicy(PolicyBase):
             return observation[slice(*slice_tuple)]
 
     def get_action(self, observation):
-        time0 = time()
+        # time0 = time()
         achieved_goal = {
             "object_position": self._get_slice(observation, self.achieved_position_slice),
             "object_orientation": self._get_slice(observation, self.achieved_orientation_slice),
@@ -69,11 +69,11 @@ class DecisionTransformerBasePolicy(PolicyBase):
         }
         reward = self.dummy_env.compute_reward(achieved_goal, desired_goal, None)
         action = self.algorithm.predict(observation, reward)
-        action = np.clip(action, self.action_space.low, self.action_space.high)
+        # action = np.clip(action, self.action_space.low, self.action_space.high)
         self.counter += 1
         if self.counter % 750 == 0: # Reset for DT, if the time sequence is too long, it will exceed the embeeding range.
             self.algorithm.reset()
-        print(f'prediction_time: {time()-time0}')
+        # print(f'prediction_time: {time()-time0}')
         return action
 
 
