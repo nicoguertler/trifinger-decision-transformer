@@ -2,5 +2,5 @@
 task = "push"  # "push" or "lift"
 
 # Specify a policy for each task.
-push_policy = "trifinger_rl_example.example.TorchPushPolicy"
-lift_policy = "trifinger_rl_example.example.TorchLiftPolicy"
+push_policy = "trifinger_decision_transformer.decision_transformer.DTPushPolicy"
+lift_policy = "trifinger_decision_transformer.decision_transformer.DTLiftPolicy"

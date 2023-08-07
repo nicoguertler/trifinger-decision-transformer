@@ -1,3 +1,8 @@
+Decision Transformer Deployment on the TriFinger platform
+=========================================================
+
+This repository contains code for deploying a Decision Transformer learned with d3rlpy on the TriFinger platform. It is based on the TriFinger Rl Example Package (original readme below).
+
 TriFinger RL Example Package
 ============================
 
