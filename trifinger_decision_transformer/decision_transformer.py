@@ -104,6 +104,12 @@ class DTLiftPolicy(DecisionTransformerBasePolicy):
     """
 
     def __init__(self, action_space, observation_space, episode_length):
-        raise NotImplementedError("DT policy for lift task not implemented yet")
-        model = policies.get_model_path("lift.pt")
+        model = policies.get_model_path("lift_123.d3")
         super().__init__(model, action_space, observation_space, episode_length)
+        self.dummy_env = gymnasium.make("trifinger-cube-lift-real-expert-v0")
+        self.obs_indices, self.obs_shapes = self.dummy_env.get_obs_indices()
+        print(self.obs_indices)
+        self.achieved_keypoints_slice = self.obs_indices["achieved_goal"]["object_keypoints"]
+        # self.achieved_orientation_slice = self.obs_indices["achieved_goal"]["object_orientation"]
+        self.desired_keypoints_slice = self.obs_indices["desired_goal"]["object_keypoints"]
+        # self.desired_orientation_slice = self.obs_indices["desired_goal"]["object_orientation"]

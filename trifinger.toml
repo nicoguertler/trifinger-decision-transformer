@@ -1,5 +1,5 @@
 [trifinger_rl_experiment]
-task = "push"  # "push" or "lift"
+task = "lift"  # "push" or "lift"
 
 # Specify a policy for each task.
 push_policy = "trifinger_decision_transformer.decision_transformer.DTPushPolicy"
