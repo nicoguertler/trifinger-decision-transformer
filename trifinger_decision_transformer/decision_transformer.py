@@ -84,7 +84,8 @@ class DTPushPolicy(DecisionTransformerBasePolicy):
     """
 
     def __init__(self, action_space, observation_space, episode_length):
-        model = policies.get_model_path("push_123.d3")
+        # model = policies.get_model_path("push_123.d3")
+        model = policies.get_model_path("push_233.d3")
         super().__init__(model, action_space, observation_space, episode_length)
         self.dummy_env = gymnasium.make("trifinger-cube-push-real-expert-v0")
         self.obs_indices, self.obs_shapes = self.dummy_env.get_obs_indices()
