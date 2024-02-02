@@ -44,8 +44,6 @@ class TorchBasePolicy(PolicyBase):
         action = self.policy(observation.unsqueeze(0))
         action = action.detach().numpy()[0]
         action = np.clip(action, self.action_space.low, self.action_space.high)
-        # sleep for 4 ms to test effect on policy performance
-        sleep(0.004)
         return action
 
 
@@ -68,4 +66,14 @@ class TorchLiftPolicy(TorchBasePolicy):
 
     def __init__(self, action_space, observation_space, episode_length):
         model = policies.get_model_path("lift.pt")
+        super().__init__(model, action_space, observation_space, episode_length)
+
+class CRRTorchLiftPolicy(TorchBasePolicy):
+    """Offline RL policy for the lift task, using a torch model to provide actions.
+
+    Expects flattened observations.
+    """
+
+    def __init__(self, action_space, observation_space, episode_length):
+        model = policies.get_model_path("crr_old_data.pt")
         super().__init__(model, action_space, observation_space, episode_length)
